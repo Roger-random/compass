@@ -14,7 +14,7 @@ export class CapabilityCheckComponent implements OnInit {
   cube = new Mesh();
 
   ngOnInit() : void {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( this.renderer.domElement );
@@ -26,15 +26,19 @@ export class CapabilityCheckComponent implements OnInit {
 
     this.camera.position.z = 5;
 
-    this.animate();
+    requestAnimationFrame((timestamp)=>{
+      CapabilityCheckComponent.animationFrameCallback(this, timestamp)
+    });
   }
 
-  animate() : void {
-    requestAnimationFrame( this.animate );
+  static animationFrameCallback(context : CapabilityCheckComponent, timestamp: DOMHighResTimeStamp) : void {
+    context.cube.rotation.x += 0.01;
+    context.cube.rotation.y += 0.01;
 
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
+    context.renderer.render( context.scene, context.camera );
 
-    this.renderer.render( this.scene, this.camera );
+    requestAnimationFrame((timestamp)=>{
+      CapabilityCheckComponent.animationFrameCallback(context, timestamp)
+    });
   }
 }
