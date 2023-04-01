@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Scene, PerspectiveCamera, WebGLRenderer, Mesh, BoxGeometry, MeshBasicMaterial } from 'three';
 
 @Component({
@@ -7,17 +7,21 @@ import { Scene, PerspectiveCamera, WebGLRenderer, Mesh, BoxGeometry, MeshBasicMa
   styleUrls: ['./capability-check.component.css']
 })
 
-export class CapabilityCheckComponent implements OnInit {
+export class CapabilityCheckComponent implements AfterViewInit {
   scene = new Scene();
   camera = new PerspectiveCamera(75, 1.0, 0.1, 1000);
   renderer = new WebGLRenderer();
   cube = new Mesh();
 
-  ngOnInit() : void {
-    this.camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  @ViewChild('mydiv') chilDiv!: ElementRef;
 
-    this.renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( this.renderer.domElement );
+  ngAfterViewInit() : void {
+    let dive: HTMLDivElement = this.chilDiv.nativeElement;
+
+    this.camera.aspect = dive.clientWidth / dive.clientHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize( dive.clientWidth, dive.clientHeight );
+    dive.appendChild( this.renderer.domElement );
 
     const geometry = new BoxGeometry( 1, 1, 1 );
     const material = new MeshBasicMaterial( { color: 0x00ff00 } );
