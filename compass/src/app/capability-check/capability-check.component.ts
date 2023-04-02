@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild, HostListener } from '@angular/core';
 import { Scene, PerspectiveCamera, WebGLRenderer, Mesh, BoxGeometry, MeshBasicMaterial } from 'three';
 
 @Component({
@@ -16,12 +16,7 @@ export class CapabilityCheckComponent implements AfterViewInit {
   @ViewChild('mydiv') chilDiv!: ElementRef;
 
   ngAfterViewInit() : void {
-    let dive: HTMLDivElement = this.chilDiv.nativeElement;
-
-    this.camera.aspect = dive.clientWidth / dive.clientHeight;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize( dive.clientWidth, dive.clientHeight );
-    dive.appendChild( this.renderer.domElement );
+    this.resize().appendChild( this.renderer.domElement );
 
     const geometry = new BoxGeometry( 1, 1, 1 );
     const material = new MeshBasicMaterial( { color: 0x00ff00 } );
@@ -33,6 +28,23 @@ export class CapabilityCheckComponent implements AfterViewInit {
     requestAnimationFrame((timestamp)=>{
       CapabilityCheckComponent.animationFrameCallback(this, timestamp)
     });
+  }
+
+  resize() : HTMLDivElement {
+    let dive: HTMLDivElement = this.chilDiv.nativeElement;
+
+    this.camera.aspect = dive.clientWidth / dive.clientHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize( dive.clientWidth, dive.clientHeight );
+
+    return dive;
+  }
+
+  @HostListener('window:resize')
+  resizeCallback() : void {
+    // Full layout pass probably hasn't completed by the time of resize
+    // event. Wait 250ms before querying clientWidth/clientHeight for use.
+    setTimeout(() => {this.resize();}, 250);
   }
 
   static animationFrameCallback(context : CapabilityCheckComponent, timestamp: DOMHighResTimeStamp) : void {
