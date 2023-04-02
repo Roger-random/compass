@@ -1,3 +1,6 @@
-div {
-  height: 100%;
+app-compass-needle {
+  display: block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
 }
