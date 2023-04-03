@@ -1,7 +1,7 @@
 # Compass
 
 The object of this project is to turn the rough
-[magnetometer](../magnetometer)
+[magnetometer](https://github.com/Roger-random/nodejs_tests/tree/main/magnetometer)
 prototype code into a nice-looking web app digitally emulating a compass.
 
 ## Angular
