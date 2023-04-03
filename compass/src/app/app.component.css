@@ -5,7 +5,6 @@
 }
 
 header {
-  flex-grow: 1;
   background-color: #ddd;
   display: flex;
   justify-content: center;
@@ -13,11 +12,10 @@ header {
 }
 
 section {
-  flex-grow: 30; /* TODO: More elegant way to say "give this guy all remaining space"? */
+  flex-grow: 1;
 }
 
 footer {
-  flex-grow: 1;
   background-color: #ddd;
   display: flex;
   justify-content: center;
