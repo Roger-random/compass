@@ -60,7 +60,6 @@ export class CompassNeedleComponent implements AfterViewInit {
 
     if (renderSize.x != dive.clientWidth ||
         renderSize.y != dive.clientHeight) {
-        console.log("Size discrepancy detected, resizing.");
         this.resize();
     }
   }
