@@ -1,0 +1,25 @@
+#app-component-div {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  flex-grow: 1;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  flex-grow: 30; /* TODO: More elegant way to say "give this guy all remaining space"? */
+}
+
+footer {
+  flex-grow: 1;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

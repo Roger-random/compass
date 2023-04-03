@@ -1,6 +1,19 @@
+#capability-check-div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+section {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
 app-compass-needle {
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 80%;
+  height: 80%;
   border: 1px solid red;
 }

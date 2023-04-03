@@ -1,5 +1,5 @@
-import { Component, ElementRef, AfterViewInit, ViewChild, HostListener } from '@angular/core';
-import { Scene, Group, PerspectiveCamera, WebGLRenderer, Mesh, ConeGeometry, MeshBasicMaterial } from 'three';
+import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Scene, Group, PerspectiveCamera, WebGLRenderer, Mesh, ConeGeometry, MeshBasicMaterial, Vector2 } from 'three';
 
 @Component({
   selector: 'app-compass-needle',
@@ -35,7 +35,7 @@ export class CompassNeedleComponent implements AfterViewInit {
 
     this.scene.add( this.needle );
 
-    this.camera.position.z = 5;
+    this.camera.position.z = 7;
 
     requestAnimationFrame((timestamp)=>{
       CompassNeedleComponent.animationFrameCallback(this, timestamp)
@@ -52,17 +52,24 @@ export class CompassNeedleComponent implements AfterViewInit {
     return dive;
   }
 
-  @HostListener('window:resize')
-  resizeCallback() : void {
-    // Full layout pass probably hasn't completed by the time of resize
-    // event. Wait 250ms before querying clientWidth/clientHeight for use.
-    setTimeout(() => {this.resize();}, 250);
+  checksize() : void {
+    let dive: HTMLDivElement = this.chilDiv.nativeElement;
+    let renderSize: Vector2 = new Vector2(0,0);
+
+    this.renderer.getSize(renderSize);
+
+    if (renderSize.x != dive.clientWidth ||
+        renderSize.y != dive.clientHeight) {
+        console.log("Size discrepancy detected, resizing.");
+        this.resize();
+    }
   }
 
   static animationFrameCallback(context : CompassNeedleComponent, timestamp: DOMHighResTimeStamp) : void {
     context.needle.rotation.x += 0.01;
     context.needle.rotation.y += 0.01;
 
+    context.checksize();
     context.renderer.render( context.scene, context.camera );
 
     requestAnimationFrame((timestamp)=>{
