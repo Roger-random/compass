@@ -3,7 +3,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [
+      "w3c-generic-sensor",
+    ]
   },
   "files": [
     "src/main.ts"
