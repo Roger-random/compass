@@ -17,24 +17,26 @@
       Extra Classes". Other browsers/devices will vary.
     </p>
   </section>
-  <section id="compass">
-    <app-compass-needle></app-compass-needle>
-  </section>
-  <section id="data">
-    <h4>{{magnetometerService.status | async}}</h4>
-    <ul id="three-axis">
-      <li>
-        <h4>X</h4>
-        <p>{{magX | number:'1.2-2'}}</p>
-      </li>
-      <li>
-        <h4>Y</h4>
-        <p>{{magY | number:'1.2-2'}}</p>
-      </li>
-      <li>
-        <h4>Z</h4>
-        <p>{{magZ | number:'1.2-2'}}</p>
-      </li>
-    </ul>
+  <section id="display">
+    <section id="compass">
+      <app-compass-needle></app-compass-needle>
+    </section>
+    <section id="data">
+      <h4>{{magnetometerService.status | async}}</h4>
+      <ul id="three-axis">
+        <li>
+          <h4>X</h4>
+          <p>{{magX | number:'1.2-2'}}</p>
+        </li>
+        <li>
+          <h4>Y</h4>
+          <p>{{magY | number:'1.2-2'}}</p>
+        </li>
+        <li>
+          <h4>Z</h4>
+          <p>{{magZ | number:'1.2-2'}}</p>
+        </li>
+      </ul>
+    </section>
   </section>
 </div>

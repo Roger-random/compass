@@ -1,6 +1,17 @@
 #app-component-div {
   display: flex;
-  flex-direction: column;
+}
+
+@media (orientation: portrait) {
+  #app-component-div {
+    flex-direction: column;
+  }
+}
+
+@media (orientation: landscape) {
+  #app-component-div {
+    flex-direction: row;
+  }
 }
 
 header {
@@ -10,6 +21,13 @@ header {
   align-items: center;
   padding: 0.5em;
 }
+
+@media (orientation: landscape) {
+  header {
+    writing-mode: vertical-lr;
+  }
+}
+
 
 section {
   flex-grow: 1;
@@ -21,4 +39,9 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 0.5em;
+}
+@media (orientation: landscape) {
+  footer {
+    writing-mode: vertical-lr;
+  }
 }

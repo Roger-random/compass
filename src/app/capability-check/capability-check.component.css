@@ -15,18 +15,51 @@
   border-radius: 1em;
 }
 
+#display {
+  display: flex;
+}
+
+@media (orientation: portrait) {
+  #display {
+    flex-direction: column;
+  }
+}
+
+@media (orientation: landscape) {
+  #display {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
 #compass {
   display: flex;
-  flex-grow: 1;
   align-items: center;
   justify-content: center;
 }
 
 app-compass-needle {
   display: block;
-  width: 80%;
   aspect-ratio: 1;
-  padding: 10%;
+}
+
+@media (orientation: portrait) {
+  #compass {
+    flex-grow: 1;
+  }
+
+  app-compass-needle {
+    width: 80%;
+    padding: 10%;
+  }
+}
+
+@media (orientation: landscape) {
+  app-compass-needle {
+    height: 60vh;
+    padding: 10vh;
+  }
 }
 
 #data {
@@ -41,12 +74,11 @@ app-compass-needle {
   display: flex;
   justify-content: space-between;
   padding: 2em;
-  width: 90%;
 }
 
 #three-axis li {
   display: flex;
-  width: 25%;
+  width: 8em;
   justify-content: space-between;
   border: solid 1px black;
   padding: 0.5em;
@@ -54,5 +86,23 @@ app-compass-needle {
 
 #three-axis li p {
   font-family: 'Courier New', Courier, monospace;
+}
+
+@media (orientation: portrait) {
+  #three-axis {
+    flex-direction: row;
+    width: 90%;
+  }
+}
+
+@media (orientation: landscape) {
+  #data {
+    padding: 2em;
+  }
+
+  #three-axis {
+    flex-direction: column;
+    width: 60%;
+  }
 }
 
