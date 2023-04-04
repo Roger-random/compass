@@ -36,19 +36,11 @@ export class CapabilityCheckComponent implements OnInit {
     });
   }
 
-  protected haveSensor() : boolean {
-    return this.lastMagState == MagnetometerServiceState.have_sensor;
-  }
-
   protected haveAPI() : boolean {
     return this.lastMagState == MagnetometerServiceState.have_api;
   }
 
   protected start() : boolean {
     return this.lastMagState == MagnetometerServiceState.start;
-  }
-
-  protected error() : boolean {
-    return this.lastMagState == MagnetometerServiceState.error;
   }
 }

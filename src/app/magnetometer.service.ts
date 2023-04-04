@@ -10,6 +10,7 @@ export class MagnetometerService {
   public status = new BehaviorSubject<string>("Uninitialized");
   public data = new Subject<MagnetometerData>();
   private _mag? : Magnetometer = undefined;
+  private _noReadYet : boolean = true;
 
   constructor() {
     if ('undefined' !== typeof(Magnetometer)) {
@@ -33,10 +34,13 @@ export class MagnetometerService {
   }
 
   onReading() : void {
-    this.state.next(MagnetometerServiceState.have_sensor);
-    this.status.next(`Magnetometer data received`);
     if (this._mag && this._mag.x && this._mag.y && this._mag.z){
       this.data.next({x:this._mag.x, y:this._mag.y, z:this._mag.z});
+      if (this._noReadYet) {
+        this.state.next(MagnetometerServiceState.have_sensor);
+        this.status.next(`Magnetometer data received`);
+        this._noReadYet = false;
+      }
     }
   }
 

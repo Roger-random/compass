@@ -1,5 +1,4 @@
 #app-component-div {
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -9,6 +8,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5em;
 }
 
 section {
@@ -20,4 +20,5 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5em;
 }

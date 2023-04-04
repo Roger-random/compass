@@ -1,33 +1,42 @@
 <div id="capability-check-div">
-  <section>
-    <div *ngIf="haveSensor()">
-      <p>Magnetometer is online</p>
-    </div>
+  <section id="info">
     <div *ngIf="haveAPI()">
-      <p>No Magnetometer Sensor</p>
+      <p>
+        <a href="https://w3c.github.io/magnetometer/">W3C Magnetometer API</a>
+        is available on this browser, but was unable to connect to an actual
+        sensor on this device. This is expected if this device lacks applicable
+        hardware. (Example: low-end Amazon Fire tablets and most desktop/laptop
+        computers.)
+      </p>
     </div>
     <div *ngIf="start()">
-      <p>No magnetometer API. Maybe turn on chrome://flags?</p>
+      <p>
+        <a href="https://w3c.github.io/magnetometer/">W3C Magnetometer API</a>
+        is not available right now. For Chrome, you will need to type
+        <strong>chrome://flags</strong> into your address bar to access
+        <strong>Experiments</strong> menu. From there enable "Generic Sensor
+        Extra Classes". Other browsers/devices will vary.
+      </p>
     </div>
-    <div *ngIf="error()">
-      <p>Something unexpected happened</p>
-    </div>
-    <ul>
-      <li>
-        <p>X: {{magX | number:'1.2-2'}}</p>
-      </li>
-      <li>
-        <p>Y: {{magY | number:'1.2-2'}}</p>
-      </li>
-      <li>
-        <p>Z: {{magZ | number:'1.2-2'}}</p>
-      </li>
-    </ul>
-</section>
-  <section>
+  </section>
+  <section id="compass">
     <app-compass-needle></app-compass-needle>
   </section>
-  <section>
-    <p>{{magetometerService.status | async}}</p>
+  <section id="data">
+    <h4>{{magnetometerService.status | async}}</h4>
+    <ul id="three-axis">
+      <li>
+        <h4>X</h4>
+        <p>{{magX | number:'1.2-2'}}</p>
+      </li>
+      <li>
+        <h4>Y</h4>
+        <p>{{magY | number:'1.2-2'}}</p>
+      </li>
+      <li>
+        <h4>Z</h4>
+        <p>{{magZ | number:'1.2-2'}}</p>
+      </li>
+    </ul>
   </section>
 </div>

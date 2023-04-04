@@ -4,7 +4,18 @@
   height: 100%;
 }
 
-section {
+#info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin: 0.5em;
+  border: red solid 0.25em;
+  border-radius: 1em;
+}
+
+#compass {
   display: flex;
   flex-grow: 1;
   align-items: center;
@@ -14,5 +25,34 @@ section {
 app-compass-needle {
   display: block;
   width: 80%;
-  height: 80%;
+  aspect-ratio: 1;
+  padding: 10%;
 }
+
+#data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#three-axis {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+  width: 90%;
+}
+
+#three-axis li {
+  display: flex;
+  width: 25%;
+  justify-content: space-between;
+  border: solid 1px black;
+  padding: 0.5em;
+}
+
+#three-axis li p {
+  font-family: 'Courier New', Courier, monospace;
+}
+
