@@ -1,21 +1,22 @@
 <div id="capability-check-div">
   <section>
-    <div *ngIf="haveMagnetometerAPI; else apiFail">
-      <div *ngIf="haveMagnetometerSensor; else sensorFail">
-        <p>Magnetometer is online</p>
-      </div>
-      <ng-template #sensorFail>
-        <p>No Magnetometer Sensor</p>
-      </ng-template>
+    <div *ngIf="haveSensor()">
+      <p>Magnetometer is online</p>
     </div>
-    <ng-template #apiFail>
+    <div *ngIf="haveAPI()">
+      <p>No Magnetometer Sensor</p>
+    </div>
+    <div *ngIf="start()">
       <p>No magnetometer API. Maybe turn on chrome://flags?</p>
-    </ng-template>
+    </div>
+    <div *ngIf="error()">
+      <p>Something unexpected happened</p>
+    </div>
   </section>
   <section>
     <app-compass-needle></app-compass-needle>
   </section>
   <section>
-    <p>Tap Compass For Fullscreen</p>
+    <p>{{magetometerService.status | async}}</p>
   </section>
 </div>

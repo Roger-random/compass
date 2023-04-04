@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CompassNeedleComponent } from '../compass-needle/compass-needle.component';
-import { MagnetometerService } from '../magnetometer.service';
+import { MagnetometerService, MagnetometerServiceState } from '../magnetometer.service';
 
 @Component({
   selector: 'app-capability-check',
@@ -9,15 +9,27 @@ import { MagnetometerService } from '../magnetometer.service';
 })
 
 export class CapabilityCheckComponent {
-  constructor(private magetometerService:MagnetometerService) {
+  protected lastMagState : MagnetometerServiceState = MagnetometerServiceState.error;
 
+  constructor(protected magetometerService:MagnetometerService) {
+    magetometerService.state.subscribe({
+      next: (state) => {this.lastMagState = state;console.log(`magUpdate ${state}`);}
+    });
   }
 
-  public get haveMagnetometerAPI() : boolean {
-    return this.magetometerService.haveAPI;
+  protected haveSensor() : boolean {
+    return this.lastMagState == MagnetometerServiceState.have_sensor;
   }
 
-  public get haveMagnetometerSensor() : boolean {
-    return this.magetometerService.haveSensor;
+  protected haveAPI() : boolean {
+    return this.lastMagState == MagnetometerServiceState.have_api;
+  }
+
+  protected start() : boolean {
+    return this.lastMagState == MagnetometerServiceState.start;
+  }
+
+  protected error() : boolean {
+    return this.lastMagState == MagnetometerServiceState.error;
   }
 }
