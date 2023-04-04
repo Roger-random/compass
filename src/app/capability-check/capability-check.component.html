@@ -2,17 +2,6 @@
   <section>
     <div *ngIf="haveSensor()">
       <p>Magnetometer is online</p>
-      <ul>
-        <li>
-          <p>X: {{magX}}</p>
-        </li>
-        <li>
-          <p>Y: {{magY}}</p>
-        </li>
-        <li>
-          <p>Z: {{magZ}}</p>
-        </li>
-      </ul>
     </div>
     <div *ngIf="haveAPI()">
       <p>No Magnetometer Sensor</p>
@@ -23,7 +12,18 @@
     <div *ngIf="error()">
       <p>Something unexpected happened</p>
     </div>
-  </section>
+    <ul>
+      <li>
+        <p>X: {{magX | number:'1.2-2'}}</p>
+      </li>
+      <li>
+        <p>Y: {{magY | number:'1.2-2'}}</p>
+      </li>
+      <li>
+        <p>Z: {{magZ | number:'1.2-2'}}</p>
+      </li>
+    </ul>
+</section>
   <section>
     <app-compass-needle></app-compass-needle>
   </section>

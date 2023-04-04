@@ -1,5 +1,6 @@
 import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Scene, Group, PerspectiveCamera, WebGLRenderer, Mesh, ConeGeometry, MeshBasicMaterial, Vector2 } from 'three';
+import { MagnetometerData, MagnetometerService } from '../magnetometer.service';
 
 @Component({
   selector: 'app-compass-needle',
@@ -14,6 +15,12 @@ export class CompassNeedleComponent implements AfterViewInit {
   needle = new Group();
 
   @ViewChild('compassneedlediv') chilDiv!: ElementRef;
+
+  constructor(private magnetometerService:MagnetometerService) {
+    magnetometerService.data.subscribe({
+      next: (value) => this.updateNeedle(value),
+    });
+  }
 
   ngAfterViewInit() : void {
     this.resize().appendChild( this.renderer.domElement );
@@ -36,10 +43,6 @@ export class CompassNeedleComponent implements AfterViewInit {
     this.scene.add( this.needle );
 
     this.camera.position.z = 7;
-
-    requestAnimationFrame((timestamp)=>{
-      CompassNeedleComponent.animationFrameCallback(this, timestamp)
-    });
   }
 
   resize() : HTMLDivElement {
@@ -64,15 +67,13 @@ export class CompassNeedleComponent implements AfterViewInit {
     }
   }
 
-  static animationFrameCallback(context : CompassNeedleComponent, timestamp: DOMHighResTimeStamp) : void {
-    context.needle.rotation.x += 0.01;
-    context.needle.rotation.y += 0.01;
+  updateNeedle(value:MagnetometerData) : void {
+    this.needle.lookAt(value.x, value.y, value.z);
+    requestAnimationFrame((timestamp)=>this.renderNeedle(timestamp));
+  }
 
-    context.checksize();
-    context.renderer.render( context.scene, context.camera );
-
-    requestAnimationFrame((timestamp)=>{
-      CompassNeedleComponent.animationFrameCallback(context, timestamp)
-    });
+  renderNeedle(timestamp: DOMHighResTimeStamp) : void {
+    this.checksize();
+    this.renderer.render( this.scene, this.camera );
   }
 }
