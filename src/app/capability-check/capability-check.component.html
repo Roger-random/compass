@@ -1,23 +1,21 @@
 <div id="capability-check-div">
-  <section id="info">
-    <div *ngIf="haveAPI()">
-      <p>
-        <a href="https://w3c.github.io/magnetometer/">W3C Magnetometer API</a>
-        is available on this browser, but was unable to connect to an actual
-        sensor on this device. This is expected if this device lacks applicable
-        hardware. (Example: low-end Amazon Fire tablets and most desktop/laptop
-        computers.)
-      </p>
-    </div>
-    <div *ngIf="start()">
-      <p>
-        <a href="https://w3c.github.io/magnetometer/">W3C Magnetometer API</a>
-        is not available right now. For Chrome, you will need to type
-        <strong>chrome://flags</strong> into your address bar to access
-        <strong>Experiments</strong> menu. From there enable "Generic Sensor
-        Extra Classes". Other browsers/devices will vary.
-      </p>
-    </div>
+  <section class="info" *ngIf="haveAPI()">
+    <p>
+      <a href="https://w3c.github.io/magnetometer/">W3C Magnetometer API</a>
+      is available on this browser, but was unable to connect to an actual
+      sensor on this device. This is expected if this device lacks applicable
+      hardware. (Example: low-end Amazon Fire tablets and most desktop/laptop
+      computers.)
+    </p>
+  </section>
+  <section class="info" *ngIf="start()">
+    <p>
+      <a href="https://w3c.github.io/magnetometer/">W3C Magnetometer API</a>
+      is not available right now. For Chrome, you will need to type
+      <strong>chrome://flags</strong> into your address bar to access
+      <strong>Experiments</strong> menu. From there enable "Generic Sensor
+      Extra Classes". Other browsers/devices will vary.
+    </p>
   </section>
   <section id="compass">
     <app-compass-needle></app-compass-needle>
