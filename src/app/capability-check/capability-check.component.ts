@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { MagnetometerService, MagnetometerServiceState } from '../magnetometer.service';
 
 @Component({
@@ -14,12 +14,12 @@ export class CapabilityCheckComponent {
   protected magY : number = 0;
   protected magZ : number = 0;
 
-  constructor(protected magetometerService:MagnetometerService) {
+  constructor(protected magetometerService:MagnetometerService, private cdRef : ChangeDetectorRef) {
     magetometerService.state.subscribe({
-      next: (state) => {this.lastMagState = state;}
+      next: (state) => {this.lastMagState = state;this.cdRef.detectChanges();}
     });
     magetometerService.data.subscribe({
-      next: (data) => {this.magX = data.x;this.magY = data.y;this.magZ = data.z;}
+      next: (data) => {this.magX = data.x;this.magY = data.y;this.magZ = data.z;this.cdRef.detectChanges();}
     });
 
   }
