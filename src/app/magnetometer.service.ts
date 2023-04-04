@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class MagnetometerService {
   public state = new BehaviorSubject<MagnetometerServiceState>(MagnetometerServiceState.start);
   public status = new BehaviorSubject<string>("Uninitialized");
+  public data = new Subject<MagnetometerData>();
   private _mag? : Magnetometer = undefined;
 
   constructor() {
@@ -31,7 +32,10 @@ export class MagnetometerService {
 
   static onReading(context: MagnetometerService) : void {
     context.state.next(MagnetometerServiceState.have_sensor);
-    context.status.next(`onReading! X ${context._mag?.x}`);
+    context.status.next(`Magnetometer data received`);
+    if (context._mag && context._mag.x && context._mag.y && context._mag.z){
+      context.data.next({x:context._mag.x, y:context._mag.y, z:context._mag.z});
+    }
   }
 
   static onError(context: MagnetometerService, e:SensorErrorEvent) : void {
@@ -49,4 +53,8 @@ export enum MagnetometerServiceState {
   start,
   have_api,
   have_sensor,
+}
+
+export class MagnetometerData {
+  constructor(public x:number, public y:number, public z:number) {}
 }

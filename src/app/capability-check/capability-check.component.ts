@@ -10,11 +10,18 @@ import { MagnetometerService, MagnetometerServiceState } from '../magnetometer.s
 
 export class CapabilityCheckComponent {
   protected lastMagState : MagnetometerServiceState = MagnetometerServiceState.error;
+  protected magX : number = 0;
+  protected magY : number = 0;
+  protected magZ : number = 0;
 
   constructor(protected magetometerService:MagnetometerService) {
     magetometerService.state.subscribe({
       next: (state) => {this.lastMagState = state;console.log(`magUpdate ${state}`);}
     });
+    magetometerService.data.subscribe({
+      next: (data) => {this.magX = data.x;this.magY = data.y;this.magZ = data.z;}
+    });
+
   }
 
   protected haveSensor() : boolean {
