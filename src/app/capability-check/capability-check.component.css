@@ -20,6 +20,7 @@
   display: flex;
   margin: 0.5em;
   justify-content: space-evenly;
+  height: 100%;
 }
 
 @media (orientation: portrait) {
@@ -36,20 +37,12 @@
 
 #compass {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-grow: 1;
 }
 
 app-compass-needle {
+  height: 100%;
   flex-grow: 1;
-  aspect-ratio: 1 / 1;
-}
-
-@media (orientation: landscape) {
-  app-compass-needle {
-    max-height: 100vh;
-  }
 }
 
 #data {
