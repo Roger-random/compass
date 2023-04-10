@@ -47,10 +47,9 @@ export class CompassNeedleComponent implements AfterViewInit {
 
   resize() : HTMLDivElement {
     let dive: HTMLDivElement = this.chilDiv.nativeElement;
+    let squareSide = Math.floor(Math.min(dive.clientWidth, dive.clientHeight));
 
-    this.camera.aspect = dive.clientWidth / dive.clientHeight;
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize( dive.clientWidth, dive.clientHeight );
+    this.renderer.setSize( squareSide, squareSide );
 
     return dive;
   }
@@ -61,8 +60,7 @@ export class CompassNeedleComponent implements AfterViewInit {
 
     this.renderer.getSize(renderSize);
 
-    if (renderSize.x != dive.clientWidth ||
-        renderSize.y != dive.clientHeight) {
+    if (renderSize.x != Math.floor(Math.min(dive.clientWidth, dive.clientHeight))) {
         this.resize();
     }
   }
