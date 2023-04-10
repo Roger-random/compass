@@ -50,21 +50,22 @@ app-compass-needle {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 0.5em;
+  text-align: center;
 }
 
 #three-axis {
   list-style-type: none;
-  display: flex;
+  display: grid;
+  gap: 0.5em;
   justify-content: space-between;
   align-items: center;
-  padding: 2em;
-  width: 90%;
+  padding-block: 0.5em;
+  padding-inline: 0;
 }
 
 #three-axis li {
   display: flex;
-  width: 8em;
   justify-content: space-between;
   border: solid 1px black;
   padding: 0.5em;
@@ -76,13 +77,15 @@ app-compass-needle {
 
 @media (orientation: portrait) {
   #three-axis {
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
   }
 }
 
 @media (orientation: landscape) {
   #three-axis {
-    flex-direction: column;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 }
 
