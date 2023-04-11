@@ -16,7 +16,6 @@ export class AppComponent {
   }
 
   toggleFullScreen() : void {
-    console.log('toggle');
     if (!document.fullscreenElement) {
       this.rootDiv.nativeElement.requestFullscreen();
     } else if (document.exitFullscreen) {
