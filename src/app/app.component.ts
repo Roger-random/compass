@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'compass';
+  document = new Document();
+
+  @ViewChild('rootdiv') rootDiv!: ElementRef;
+
+  fullscreen_possible() : boolean {
+    return document.fullscreenElement == null && document.fullscreenEnabled;
+  }
+
+  toggleFullScreen() : void {
+    console.log('toggle');
+    if (!document.fullscreenElement) {
+      this.rootDiv.nativeElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
 }
