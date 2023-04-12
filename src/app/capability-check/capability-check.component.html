@@ -22,6 +22,9 @@
       <app-compass-needle></app-compass-needle>
     </section>
     <section id="data">
+      <button *ngIf="fullscreenService.canFullscreen()" (click)="fullscreenService.goFullscreen()">
+        Go Fullscreen
+      </button>
       <h4>{{magnetometerService.status | async}}</h4>
       <ul id="three-axis">
         <li>
@@ -37,9 +40,6 @@
           <p>{{magZ | number:'1.2-2'}}</p>
         </li>
       </ul>
-      <button *ngIf="fullscreenService.canFullscreen()" (click)="fullscreenService.goFullscreen()">
-        Go Fullscreen
-      </button>
     </section>
   </section>
 </div>

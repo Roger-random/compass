@@ -55,6 +55,11 @@ app-compass-needle {
   text-align: center;
 }
 
+#data button {
+  padding: 1em;
+  margin: 1em;
+}
+
 #three-axis {
   list-style-type: none;
   display: grid;
