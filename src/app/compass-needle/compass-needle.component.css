@@ -19,6 +19,8 @@ div {
       we receive rotate-right coordinates.
 
       Workaround: when in landscape mode, rotate 180 degrees.
+
+      Issue tracked as: https://github.com/Roger-random/compass/issues/2
     */
     transform: rotate(180deg);
   }

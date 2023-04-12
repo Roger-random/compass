@@ -35,6 +35,8 @@ header {
       Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
 
       Workaround below: use vertical-lr and rotate it 180 degrees.
+
+      Issue tracked as https://github.com/Roger-random/compass/issues/3
     */
     writing-mode: vertical-lr;
     transform: rotate(180deg);
@@ -65,6 +67,8 @@ footer {
       Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
 
       Workaround below: use vertical-lr and rotate it 180 degrees.
+
+      Issue tracked as https://github.com/Roger-random/compass/issues/3
     */
     writing-mode: vertical-lr;
     transform: rotate(180deg);
