@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FullscreenService } from './fullscreen.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +12,13 @@ export class AppComponent {
 
   @ViewChild('rootdiv') rootDiv!: ElementRef;
 
-  fullscreen_possible() : boolean {
-    return document.fullscreenElement == null && document.fullscreenEnabled;
-  }
-
-  toggleFullScreen() : void {
-    if (!document.fullscreenElement) {
-      this.rootDiv.nativeElement.requestFullscreen();
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
+  constructor(private fullscreenService:FullscreenService) {
+    fullscreenService.fullscreenNotification.subscribe({
+        next: (newState) => {
+          if (newState && !document.fullscreenElement) {
+            this.rootDiv.nativeElement.requestFullscreen();
+          }
+        }
+      });
   }
 }

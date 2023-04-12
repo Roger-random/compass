@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MagnetometerService, MagnetometerServiceState } from '../magnetometer.service';
 import { distinct } from 'rxjs';
+import { FullscreenService } from '../fullscreen.service';
 
 @Component({
   selector: 'app-capability-check',
@@ -15,7 +16,10 @@ export class CapabilityCheckComponent implements OnInit {
   protected magY : number = 0;
   protected magZ : number = 0;
 
-  constructor(protected magnetometerService:MagnetometerService, private cdRef : ChangeDetectorRef) {}
+  constructor(
+    protected magnetometerService:MagnetometerService,
+    protected fullscreenService:FullscreenService,
+    private cdRef : ChangeDetectorRef) {}
 
   ngOnInit():void {
     this.magnetometerService.state
