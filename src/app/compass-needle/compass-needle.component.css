@@ -4,3 +4,22 @@ div {
   justify-content: center;
   align-items: center;
 }
+
+@media (orientation: landscape) {
+  div {
+    /*
+      When screen orientation changes, magnetometer sensor values are supposed
+      to automatically transform to stay in sync with screen coordinates when
+      we specify {referenceFrame: 'screen'}.
+
+      https://developer.chrome.com/articles/generic-sensor/#synchronization-with-screen-coordinates
+
+      However, as of Chrome 112 the transform is backwards. When we are in landscape
+      rotate-right, the transform is for rotate-left. And when we are in rotate-left,
+      we receive rotate-right coordinates.
+
+      Workaround: when in landscape mode, rotate 180 degrees.
+    */
+    transform: rotate(180deg);
+  }
+}
