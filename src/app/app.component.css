@@ -25,7 +25,19 @@ header {
 
 @media (orientation: landscape) {
   header {
+    /*
+      According to MDN, the desired vertical orientation is specified via
+
+      writing-mode: sideways-lr
+
+      However, as of chrome 112 that does not result in vertical text.
+
+      Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
+
+      Workaround below: use vertical-lr and rotate it 180 degrees.
+    */
     writing-mode: vertical-lr;
+    transform: rotate(180deg);
   }
 }
 
@@ -43,6 +55,18 @@ footer {
 }
 @media (orientation: landscape) {
   footer {
+    /*
+      According to MDN, the desired vertical orientation is specified via
+
+      writing-mode: sideways-lr
+
+      However, as of chrome 112 that does not result in vertical text.
+
+      Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
+
+      Workaround below: use vertical-lr and rotate it 180 degrees.
+    */
     writing-mode: vertical-lr;
+    transform: rotate(180deg);
   }
 }
