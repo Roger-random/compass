@@ -1,7 +1,7 @@
 {
-  "name": "compass",
-  "short_name": "compass",
-  "theme_color": "#1976d2",
+  "name": "Compass",
+  "short_name": "Compass",
+  "theme_color": "#800000",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
