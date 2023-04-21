@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CompassNeedleComponent } from '../compass-needle/compass-needle.component';
 import { CapabilityCheckComponent } from './capability-check.component';
 
 describe('CapabilityCheckComponent', () => {
@@ -8,7 +8,7 @@ describe('CapabilityCheckComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CapabilityCheckComponent ]
+      declarations: [ CapabilityCheckComponent, CompassNeedleComponent ]
     })
     .compileComponents();
 
