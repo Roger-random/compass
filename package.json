@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "start": "ng serve --serve-path /compass/",
+    "build": "ng build --base-href /compass/",
+    "watch": "ng build --base-href /compass/ --watch --configuration development",
+    "deploy": "ng deploy --base-href /compass/",
     "test": "ng test"
   },
   "private": true,
