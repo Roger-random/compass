@@ -1,13 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FullscreenService } from './fullscreen.service';
-import { RouterOutlet } from '@angular/router';
+import { CapabilityCheckComponent } from './capability-check/capability-check.component';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-    imports: [RouterOutlet]
+    imports: [CapabilityCheckComponent]
 })
 export class AppComponent {
   title = 'compass';
