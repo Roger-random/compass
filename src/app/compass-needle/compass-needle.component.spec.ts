@@ -8,8 +8,8 @@ describe('CompassNeedleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompassNeedleComponent ]
-    })
+    imports: [CompassNeedleComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(CompassNeedleComponent);

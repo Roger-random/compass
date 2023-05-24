@@ -2,11 +2,15 @@ import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MagnetometerService, MagnetometerServiceState } from '../magnetometer.service';
 import { distinct } from 'rxjs';
 import { FullscreenService } from '../fullscreen.service';
+import { CompassNeedleComponent } from '../compass-needle/compass-needle.component';
+import { NgIf, AsyncPipe, DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-capability-check',
-  templateUrl: './capability-check.component.html',
-  styleUrls: ['./capability-check.component.css']
+    selector: 'app-capability-check',
+    templateUrl: './capability-check.component.html',
+    styleUrls: ['./capability-check.component.css'],
+    standalone: true,
+    imports: [NgIf, CompassNeedleComponent, AsyncPipe, DecimalPipe]
 })
 
 export class CapabilityCheckComponent implements OnInit {

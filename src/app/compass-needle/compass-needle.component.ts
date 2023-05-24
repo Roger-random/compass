@@ -3,9 +3,10 @@ import { Scene, Group, PerspectiveCamera, WebGLRenderer, Mesh, ConeGeometry, Mes
 import { MagnetometerData, MagnetometerService } from '../magnetometer.service';
 
 @Component({
-  selector: 'app-compass-needle',
-  templateUrl: './compass-needle.component.html',
-  styleUrls: ['./compass-needle.component.css']
+    selector: 'app-compass-needle',
+    templateUrl: './compass-needle.component.html',
+    styleUrls: ['./compass-needle.component.css'],
+    standalone: true
 })
 
 export class CompassNeedleComponent implements AfterViewInit {
