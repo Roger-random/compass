@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, interval } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { BehaviorSubject, interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class MagnetometerService {
+  public x = signal(-100.00);
+  public y = signal(-100.00);
+  public z = signal(0.00);
   public state = new BehaviorSubject<MagnetometerServiceState>(MagnetometerServiceState.start);
   public status = new BehaviorSubject<string>("Uninitialized");
-  public data = new Subject<MagnetometerData>();
   private _mag? : Magnetometer = undefined;
   private _noReadYet : boolean = true;
 
@@ -35,7 +37,9 @@ export class MagnetometerService {
 
   onReading() : void {
     if (this._mag && this._mag.x && this._mag.y && this._mag.z){
-      this.data.next({x:this._mag.x, y:this._mag.y, z:this._mag.z});
+      this.x.set(this._mag.x);
+      this.y.set(this._mag.y);
+      this.z.set(this._mag.z);
       if (this._noReadYet) {
         this.state.next(MagnetometerServiceState.have_sensor);
         this.status.next(`Receiving magnetometer data`);
@@ -60,16 +64,16 @@ export class MagnetometerService {
     this.status.next("No sensor, using placeholder data");
 
     placeholderTimer.subscribe({
-      next:(i) => this.data.next(MagnetometerService.placeholderData(i)),
+      next:(i) => {
+        const fullPeriod = 100; // Number of intervals for full cycle
+        const periodFraction = (i%fullPeriod)/fullPeriod; // Fraction of full cycle
+        const periodRadians = periodFraction * 2 * Math.PI; // Fraction in radians
+
+        this.x.set(Math.cos(periodRadians)*30);
+        this.y.set(100);
+        this.z.set(Math.sin(periodRadians)*50);
+      },
     })
-  }
-
-  static placeholderData(counter: number) : MagnetometerData {
-    const fullPeriod = 100; // Number of intervals for full cycle
-    const periodFraction = (counter%fullPeriod)/fullPeriod; // Fraction of full cycle
-    const periodRadians = periodFraction * 2 * Math.PI; // Fraction in radians
-
-    return {x:Math.cos(periodRadians)*30, y:100, z:Math.sin(periodRadians)*50};
   }
 }
 
@@ -78,8 +82,4 @@ export enum MagnetometerServiceState {
   start,
   have_api,
   have_sensor,
-}
-
-export class MagnetometerData {
-  constructor(public x:number, public y:number, public z:number) {}
 }

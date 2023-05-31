@@ -16,14 +16,11 @@ import { NgIf, AsyncPipe, DecimalPipe } from '@angular/common';
 export class CapabilityCheckComponent implements OnInit {
   protected lastMagState : MagnetometerServiceState = MagnetometerServiceState.error;
 
-  protected magX : number = 0;
-  protected magY : number = 0;
-  protected magZ : number = 0;
-
   constructor(
     protected magnetometerService:MagnetometerService,
     protected fullscreenService:FullscreenService,
-    private cdRef : ChangeDetectorRef) {}
+    private cdRef : ChangeDetectorRef) {
+  }
 
   ngOnInit():void {
     this.magnetometerService.state
@@ -34,14 +31,6 @@ export class CapabilityCheckComponent implements OnInit {
           this.cdRef.detectChanges();
         }
       });
-    this.magnetometerService.data.subscribe({
-      next: (data) => {
-        this.magX = data.x;
-        this.magY = data.y;
-        this.magZ = data.z;
-        this.cdRef.detectChanges();
-      }
-    });
   }
 
   protected haveAPI() : boolean {

@@ -29,15 +29,15 @@
       <ul id="three-axis">
         <li>
           <h4>X</h4>
-          <p>{{magX | number:'1.2-2'}}</p>
+          <p>{{this.magnetometerService.x() | number:'1.2-2'}}</p>
         </li>
         <li>
           <h4>Y</h4>
-          <p>{{magY | number:'1.2-2'}}</p>
+          <p>{{this.magnetometerService.y() | number:'1.2-2'}}</p>
         </li>
         <li>
           <h4>Z</h4>
-          <p>{{magZ | number:'1.2-2'}}</p>
+          <p>{{this.magnetometerService.z() | number:'1.2-2'}}</p>
         </li>
       </ul>
     </section>
