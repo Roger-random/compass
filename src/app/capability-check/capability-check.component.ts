@@ -1,6 +1,5 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, computed, Signal } from '@angular/core';
 import { MagnetometerService, MagnetometerServiceState } from '../magnetometer.service';
-import { distinct } from 'rxjs';
 import { FullscreenService } from '../fullscreen.service';
 import { CompassNeedleComponent } from '../compass-needle/compass-needle.component';
 import { NgIf, AsyncPipe, DecimalPipe } from '@angular/common';
@@ -13,31 +12,15 @@ import { NgIf, AsyncPipe, DecimalPipe } from '@angular/common';
     imports: [NgIf, CompassNeedleComponent, AsyncPipe, DecimalPipe]
 })
 
-export class CapabilityCheckComponent implements OnInit {
-  protected lastMagState : MagnetometerServiceState = MagnetometerServiceState.error;
-
+export class CapabilityCheckComponent {
   constructor(
     protected magnetometerService:MagnetometerService,
-    protected fullscreenService:FullscreenService,
-    private cdRef : ChangeDetectorRef) {
+    protected fullscreenService:FullscreenService) {
   }
 
-  ngOnInit():void {
-    this.magnetometerService.state
-      .pipe(distinct())
-      .subscribe({
-        next: (state) => {
-          this.lastMagState = state;
-          this.cdRef.detectChanges();
-        }
-      });
-  }
+  protected haveAPI : Signal<boolean> = computed(() =>
+    this.magnetometerService.state() == MagnetometerServiceState.have_api)
 
-  protected haveAPI() : boolean {
-    return this.lastMagState == MagnetometerServiceState.have_api;
-  }
-
-  protected start() : boolean {
-    return this.lastMagState == MagnetometerServiceState.start;
-  }
+  protected start : Signal<boolean> = computed(() =>
+    this.magnetometerService.state() == MagnetometerServiceState.start)
 }

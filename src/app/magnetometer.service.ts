@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, interval } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class MagnetometerService {
   public x = signal(-100.00);
   public y = signal(-100.00);
   public z = signal(0.00);
-  public state = new BehaviorSubject<MagnetometerServiceState>(MagnetometerServiceState.start);
+  public state = signal(MagnetometerServiceState.start);
   public status = signal("Uninitialized");
   private _mag? : Magnetometer = undefined;
   private _noReadYet : boolean = true;
@@ -21,10 +21,10 @@ export class MagnetometerService {
         this._mag.onreading = () => {this.onReading();};
         this._mag.onerror = (e) => {this.onError(e)};
         this._mag.start();
-        this.state.next(MagnetometerServiceState.have_api);
+        this.state.set(MagnetometerServiceState.have_api);
         this.status.set("Created and started Magnetometer object");
       } catch (e) {
-        this.state.next(MagnetometerServiceState.error);
+        this.state.set(MagnetometerServiceState.error);
         this.status.set('Magnetometer is defined yet creation failed');
         if (e && typeof(e) === 'object' && 'message' in e) {
           this.status.set(`Magnetometer creation failure: ${e.message}`);
@@ -41,7 +41,7 @@ export class MagnetometerService {
       this.y.set(this._mag.y);
       this.z.set(this._mag.z);
       if (this._noReadYet) {
-        this.state.next(MagnetometerServiceState.have_sensor);
+        this.state.set(MagnetometerServiceState.have_sensor);
         this.status.set(`Receiving magnetometer data`);
         this._noReadYet = false;
       }
@@ -51,7 +51,7 @@ export class MagnetometerService {
   onError(e:SensorErrorEvent) : void {
     if ("Could not connect to a sensor" !== e.error.message) {
       this.status.set(`onError: ${e.error.message}`);
-      this.state.next(MagnetometerServiceState.error);
+      this.state.set(MagnetometerServiceState.error);
     } else {
       this.status.set(`Error "${e.error.message}" expected in absence of hardware magnetometer`);
       setTimeout(()=>{this.startPlaceholder()}, 100);
