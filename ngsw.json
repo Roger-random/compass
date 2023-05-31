@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1685574139717,
-  "index": "/compass/index.html",
+  "timestamp": 1685575064227,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,13 +11,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "/compass/favicon.ico",
-        "/compass/index.html",
-        "/compass/main.b94c49d60b38f117.js",
-        "/compass/manifest.webmanifest",
-        "/compass/polyfills.f00f35de5fea72bd.js",
-        "/compass/runtime.7c1518bc3d8e48a2.js",
-        "/compass/styles.e5365f8304590c7a.css"
+        "/favicon.ico",
+        "/index.html",
+        "/main.4a58a43e0cb90db0.js",
+        "/manifest.webmanifest",
+        "/polyfills.f00f35de5fea72bd.js",
+        "/runtime.7c1518bc3d8e48a2.js",
+        "/styles.e5365f8304590c7a.css"
       ],
       "patterns": []
     },
@@ -29,35 +29,35 @@
         "ignoreVary": true
       },
       "urls": [
-        "/compass/assets/icons/icon-128x128.png",
-        "/compass/assets/icons/icon-144x144.png",
-        "/compass/assets/icons/icon-152x152.png",
-        "/compass/assets/icons/icon-192x192.png",
-        "/compass/assets/icons/icon-384x384.png",
-        "/compass/assets/icons/icon-512x512.png",
-        "/compass/assets/icons/icon-72x72.png",
-        "/compass/assets/icons/icon-96x96.png"
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/compass/assets/icons/icon-128x128.png": "bbaac42c1874187dc308125e2bf23fa73d0ae376",
-    "/compass/assets/icons/icon-144x144.png": "81e965e7bb2f4872c4f605d8640a8ee8aac56efa",
-    "/compass/assets/icons/icon-152x152.png": "bc0b170d0986e55eba0ba9fc69fad8d51c5ee0c6",
-    "/compass/assets/icons/icon-192x192.png": "a7c4dc3fc67d72336809b121cd42f0b530354d76",
-    "/compass/assets/icons/icon-384x384.png": "7cb75a8fd1ca2b4ad482666615ee9d8bc6bf3dc6",
-    "/compass/assets/icons/icon-512x512.png": "757cb4e16919af67940e24d6db4572f6c4a4f0c0",
-    "/compass/assets/icons/icon-72x72.png": "ab5aeddcff226b8e24e2fe3d6896454abee70250",
-    "/compass/assets/icons/icon-96x96.png": "e2b05f57227ad0e1a6adfeeca4ad97ce8abf07e6",
-    "/compass/favicon.ico": "abf78c20f6a8b16d9068d6d1836e0e7383e55218",
-    "/compass/index.html": "e5c68ce1982c2981d9b73b7340fb9a2e88f7daee",
-    "/compass/main.b94c49d60b38f117.js": "50412233086a8b21b051b1bcd464aa312a76a569",
-    "/compass/manifest.webmanifest": "47324ba708cca382673a78792343ea1dff005fb4",
-    "/compass/polyfills.f00f35de5fea72bd.js": "e53ccbd3db060d0d57b561cb9d38c832dd02f7af",
-    "/compass/runtime.7c1518bc3d8e48a2.js": "59da37afcb320ca55bb272c4c51c4278241aa18c",
-    "/compass/styles.e5365f8304590c7a.css": "f12090cf3431fafd8053167bedb4544721f5314c"
+    "/assets/icons/icon-128x128.png": "bbaac42c1874187dc308125e2bf23fa73d0ae376",
+    "/assets/icons/icon-144x144.png": "81e965e7bb2f4872c4f605d8640a8ee8aac56efa",
+    "/assets/icons/icon-152x152.png": "bc0b170d0986e55eba0ba9fc69fad8d51c5ee0c6",
+    "/assets/icons/icon-192x192.png": "a7c4dc3fc67d72336809b121cd42f0b530354d76",
+    "/assets/icons/icon-384x384.png": "7cb75a8fd1ca2b4ad482666615ee9d8bc6bf3dc6",
+    "/assets/icons/icon-512x512.png": "757cb4e16919af67940e24d6db4572f6c4a4f0c0",
+    "/assets/icons/icon-72x72.png": "ab5aeddcff226b8e24e2fe3d6896454abee70250",
+    "/assets/icons/icon-96x96.png": "e2b05f57227ad0e1a6adfeeca4ad97ce8abf07e6",
+    "/favicon.ico": "abf78c20f6a8b16d9068d6d1836e0e7383e55218",
+    "/index.html": "d1f2967a6599975ced289229ac7ac79c7a3c6ba5",
+    "/main.4a58a43e0cb90db0.js": "fbe0bdf5c5811a8575a67cecde2664ad724de166",
+    "/manifest.webmanifest": "47324ba708cca382673a78792343ea1dff005fb4",
+    "/polyfills.f00f35de5fea72bd.js": "e53ccbd3db060d0d57b561cb9d38c832dd02f7af",
+    "/runtime.7c1518bc3d8e48a2.js": "59da37afcb320ca55bb272c4c51c4278241aa18c",
+    "/styles.e5365f8304590c7a.css": "f12090cf3431fafd8053167bedb4544721f5314c"
   },
   "navigationUrls": [
     {
