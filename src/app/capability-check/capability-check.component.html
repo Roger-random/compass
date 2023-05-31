@@ -25,19 +25,19 @@
       <button *ngIf="fullscreenService.canFullscreen()" (click)="fullscreenService.goFullscreen()">
         Go Fullscreen
       </button>
-      <h4>{{magnetometerService.status | async}}</h4>
+      <h4>{{magnetometerService.status()}}</h4>
       <ul id="three-axis">
         <li>
           <h4>X</h4>
-          <p>{{this.magnetometerService.x() | number:'1.2-2'}}</p>
+          <p>{{magnetometerService.x() | number:'1.2-2'}}</p>
         </li>
         <li>
           <h4>Y</h4>
-          <p>{{this.magnetometerService.y() | number:'1.2-2'}}</p>
+          <p>{{magnetometerService.y() | number:'1.2-2'}}</p>
         </li>
         <li>
           <h4>Z</h4>
-          <p>{{this.magnetometerService.z() | number:'1.2-2'}}</p>
+          <p>{{magnetometerService.z() | number:'1.2-2'}}</p>
         </li>
       </ul>
     </section>

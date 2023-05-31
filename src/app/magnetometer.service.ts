@@ -10,7 +10,7 @@ export class MagnetometerService {
   public y = signal(-100.00);
   public z = signal(0.00);
   public state = new BehaviorSubject<MagnetometerServiceState>(MagnetometerServiceState.start);
-  public status = new BehaviorSubject<string>("Uninitialized");
+  public status = signal("Uninitialized");
   private _mag? : Magnetometer = undefined;
   private _noReadYet : boolean = true;
 
@@ -22,12 +22,12 @@ export class MagnetometerService {
         this._mag.onerror = (e) => {this.onError(e)};
         this._mag.start();
         this.state.next(MagnetometerServiceState.have_api);
-        this.status.next("Created and started Magnetometer object");
+        this.status.set("Created and started Magnetometer object");
       } catch (e) {
         this.state.next(MagnetometerServiceState.error);
-        this.status.next('Magnetometer is defined yet creation failed');
+        this.status.set('Magnetometer is defined yet creation failed');
         if (e && typeof(e) === 'object' && 'message' in e) {
-          this.status.next(`Magnetometer creation failure: ${e.message}`);
+          this.status.set(`Magnetometer creation failure: ${e.message}`);
         }
       }
     } else {
@@ -42,7 +42,7 @@ export class MagnetometerService {
       this.z.set(this._mag.z);
       if (this._noReadYet) {
         this.state.next(MagnetometerServiceState.have_sensor);
-        this.status.next(`Receiving magnetometer data`);
+        this.status.set(`Receiving magnetometer data`);
         this._noReadYet = false;
       }
     }
@@ -50,10 +50,10 @@ export class MagnetometerService {
 
   onError(e:SensorErrorEvent) : void {
     if ("Could not connect to a sensor" !== e.error.message) {
-      this.status.next(`onError: ${e.error.message}`);
+      this.status.set(`onError: ${e.error.message}`);
       this.state.next(MagnetometerServiceState.error);
     } else {
-      this.status.next(`Error "${e.error.message}" expected in absence of hardware magnetometer`);
+      this.status.set(`Error "${e.error.message}" expected in absence of hardware magnetometer`);
       setTimeout(()=>{this.startPlaceholder()}, 100);
     }
   }
@@ -61,7 +61,7 @@ export class MagnetometerService {
   startPlaceholder() : void {
     const placeholderTimer = interval(100);
 
-    this.status.next("No sensor, using placeholder data");
+    this.status.set("No sensor, using placeholder data");
 
     placeholderTimer.subscribe({
       next:(i) => {
