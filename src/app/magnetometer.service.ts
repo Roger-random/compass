@@ -23,6 +23,7 @@ export class MagnetometerService {
         this._mag.start();
         this.state.set(MagnetometerServiceState.have_api);
         this.status.set("Created and started Magnetometer object");
+        setTimeout(()=>this.signalWorkaround(), 100); // Theoretically unnecessary
       } catch (e) {
         this.state.set(MagnetometerServiceState.error);
         this.status.set('Magnetometer is defined yet creation failed');
@@ -46,6 +47,15 @@ export class MagnetometerService {
         this._noReadYet = false;
       }
     }
+  }
+
+  // Setting Angular signal from within the magnetometer onreading()
+  // callback fails to trigger dependent code, but calling the exact
+  // same code from a setTimeout() callback seems to work.
+  // Currently unknown if this is user error or Angular bug.
+  signalWorkaround() : void {
+    this.onReading();
+    setTimeout(()=>{this.signalWorkaround()}, 100);
   }
 
   onError(e:SensorErrorEvent) : void {
